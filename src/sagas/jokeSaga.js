@@ -1,5 +1,8 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 
+// slice
+import { updateJoke } from "../reducers/userReducer";
+
 // fetching from API
 const fetchJoke = async () => {
   const res = await fetch(
@@ -12,10 +15,13 @@ const fetchJoke = async () => {
 // worker saga
 function* getJoke() {
   const joke = yield call(fetchJoke);
-  yield put({
-    type: "JOKE_SUCCESS",
-    payload: joke,
-  });
+  //   yield put({
+  //     type: "JOKE_SUCCESS",
+  //     payload: joke,
+  //   });
+
+  //   slice
+  yield put(updateJoke(joke));
 }
 
 // watcher saga

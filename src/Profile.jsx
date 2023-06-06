@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Profile() {
-  const { name, age, joke } = useSelector((state) => state);
+  //   const { name, age, joke } = useSelector((state) => state);
+  const { name, age, joke } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   return (
     <div>

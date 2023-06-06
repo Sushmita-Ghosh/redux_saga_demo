@@ -14,7 +14,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 // got the store here -
 const store = configureStore({
-  reducer: userReducer,
+  // reducer: userReducer,
+  reducer: {
+    user: userReducer,
+  },
 
   // need to concat with the defaultMiddlewares
   middleware: (getDefaultMiddleware) =>

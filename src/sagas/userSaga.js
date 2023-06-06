@@ -1,5 +1,8 @@
 import { call, put, takeEvery, takeLatest, delay } from "redux-saga/effects";
 
+// slice
+import { updateAge, updateName } from "../reducers/userReducer";
+
 // fetching from API
 const getUserName = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -15,7 +18,10 @@ function* fetchUser() {
     // yield put({ type: 'USER_FETCH_SUCCEEDED', user: user })
     // const userName = yield getUserName(); // till the func doesnt give response - it will be paused.
     const userName = yield call(getUserName);
-    yield put({ type: "UPDATE_NAME_SUCCEEDED", payload: userName });
+    // yield put({ type: "UPDATE_NAME_SUCCEEDED", payload: userName });
+
+    // slice
+    yield put(updateName(userName));
   } catch (e) {
     console.log(e);
   }
@@ -23,7 +29,10 @@ function* fetchUser() {
 
 function* changeAge() {
   yield delay(2000);
-  yield put({ type: "UPDATE_AGE_SUCCEEDED", payload: 30 });
+  //   yield put({ type: "UPDATE_AGE_SUCCEEDED", payload: 30 });
+
+  // slice
+  yield put(updateAge(100));
 }
 
 // watcher saga
